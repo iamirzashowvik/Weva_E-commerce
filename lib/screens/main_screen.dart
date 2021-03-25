@@ -18,13 +18,13 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int _currentIndex = 0;
+  int _currentIndex = 2;
 
   List listOfPage = [
-    NavHome(),
+
     FavouriteScreen(),
     NearScreen(),
-
+    NavHome(),
     // NavHomeScreen(),
     Filter(),
     Profile(),
@@ -88,15 +88,16 @@ class _MainScreenState extends State<MainScreen> {
         backgroundColor: Colors.white,
         style: TabStyle.custom,
         items: [
-          TabItem(
-              icon: Center(child: FaIcon(FontAwesomeIcons.home)),
-              title: 'Home'),
+
           TabItem(
               icon: Center(child: FaIcon(FontAwesomeIcons.heart)),
               title: 'Favourite'),
           TabItem(
               icon: Center(child: FaIcon(FontAwesomeIcons.map)),
               title: 'Nearby'),
+          TabItem(
+              icon: Center(child: FaIcon(FontAwesomeIcons.home)),
+              title: 'Home'),
           TabItem(
               icon: Center(child: FaIcon(FontAwesomeIcons.fileExcel)),
               title: 'Filter'),
@@ -112,36 +113,60 @@ class _MainScreenState extends State<MainScreen> {
 
   Widget showAlert() {
     return AlertDialog(
-      content: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Stack(
-          overflow: Overflow.visible,
-          alignment: Alignment.topCenter,
-          children: [
-            Container(
-              height: 450,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                color: const Color(0xFFFFFF),
-                borderRadius: BorderRadius.all(Radius.circular(40.0)),
-              ),
-              child: ListView(
-                children: [
-                  ListTile(
+      content: Stack(
+        overflow: Overflow.visible,
+        alignment: Alignment.topCenter,
+        children: [
+          Container(
+            height: 470,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              shape: BoxShape.rectangle,
+              color: const Color(0xFFFFFF),
+              borderRadius: BorderRadius.all(Radius.circular(40.0)),
+            ),
+            child: ListView(
+              children: [
+                TextFormField(decoration: InputDecoration( border: OutlineInputBorder(),prefixIcon: Icon(Icons.search),hintText: 'Search here....'),),
+                ListTile(
+                  leading: Icon(
+                    Icons.markunread,
+                    color: Colors.green,
+                  ),
+                  title: Text(
+                    "Profile",
+                    style: TextStyle(color: Colors.black, fontSize: 16),
+                  ),
+                  trailing: IconButton(
+                      icon: Padding(
+                        padding: const EdgeInsets.only(left: 18.0),
+                        child: Icon(
+                          Icons.keyboard_arrow_right_sharp,
+                          size: 25,
+                          color: Colors.red,
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => Profile()),
+                        );
+                      }),
+                ),
+                ListTile(
                     leading: Icon(
-                      Icons.markunread,
-                      color: Colors.green,
+                      Icons.cake,
+                      color: Colors.pink,
                     ),
                     title: Text(
-                      "Profile",
+                      "Eva Points",
                       style: TextStyle(color: Colors.black, fontSize: 16),
                     ),
                     trailing: IconButton(
                         icon: Padding(
                           padding: const EdgeInsets.only(left: 18.0),
                           child: Icon(
-                            Icons.arrow_right,
+                            Icons.keyboard_arrow_right_sharp,
                             size: 25,
                             color: Colors.red,
                           ),
@@ -149,184 +174,158 @@ class _MainScreenState extends State<MainScreen> {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (_) => Profile()),
+                            MaterialPageRoute(builder: (_) => UserProfile()),
                           );
-                        }),
-                  ),
-                  ListTile(
-                      leading: Icon(
-                        Icons.cake,
-                        color: Colors.pink,
-                      ),
-                      title: Text(
-                        "Eva Points",
-                        style: TextStyle(color: Colors.black, fontSize: 16),
-                      ),
-                      trailing: IconButton(
-                          icon: Padding(
-                            padding: const EdgeInsets.only(left: 18.0),
-                            child: Icon(
-                              Icons.arrow_right,
-                              size: 25,
-                              color: Colors.red,
-                            ),
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (_) => UserProfile()),
-                            );
-                          })),
-                  ListTile(
-                      leading: Icon(
-                        Icons.call_end,
-                        color: Colors.teal,
-                      ),
-                      title: Text(
-                        "My reservation",
-                        style: TextStyle(color: Colors.black, fontSize: 16),
-                      ),
-                      trailing: IconButton(
-                          icon: Padding(
-                            padding: const EdgeInsets.only(left: 18.0),
-                            child: Icon(
-                              Icons.arrow_right,
-                              size: 25,
-                              color: Colors.red,
-                            ),
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (_) => Reservation()),
-                            );
-                          })),
-                  ListTile(
+                        })),
+                ListTile(
                     leading: Icon(
-                      Icons.notifications,
-                      color: Colors.red,
+                      Icons.call_end,
+                      color: Colors.teal,
                     ),
                     title: Text(
-                      "Notifications  ",
+                      "My reservation",
                       style: TextStyle(color: Colors.black, fontSize: 16),
                     ),
                     trailing: IconButton(
-                      icon: Padding(
-                        padding: const EdgeInsets.only(left: 18.0),
-                        child: Icon(
-                          Icons.arrow_right,
-                          size: 25,
-                          color: Colors.red,
+                        icon: Padding(
+                          padding: const EdgeInsets.only(left: 18.0),
+                          child: Icon(
+                            Icons.keyboard_arrow_right_sharp,
+                            size: 25,
+                            color: Colors.red,
+                          ),
                         ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (_) => Reservation()),
+                          );
+                        })),
+                ListTile(
+                  leading: Icon(
+                    Icons.notifications,
+                    color: Colors.red,
+                  ),
+                  title: Text(
+                    "Notifications  ",
+                    style: TextStyle(color: Colors.black, fontSize: 16),
+                  ),
+                  trailing: IconButton(
+                    icon: Padding(
+                      padding: const EdgeInsets.only(left: 18.0),
+                      child: Icon(
+                        Icons.keyboard_arrow_right_sharp,
+                        size: 25,
+                        color: Colors.red,
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Noti()),
-                        );
-                      },
                     ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Noti()),
+                      );
+                    },
                   ),
-                  ListTile(
-                    leading: Icon(
-                      Icons.verified_user,
-                      color: Colors.green,
-                    ),
-                    title: Text(
-                      "User Directory",
-                      style: TextStyle(color: Colors.black, fontSize: 16),
-                    ),
-                    trailing: Icon(
-                      Icons.arrow_right,
-                      size: 25,
-                      color: Colors.red,
-                    ),
-                  ),
-                  ListTile(
-                    leading: Icon(
-                      Icons.search,
-                      color: Colors.green,
-                    ),
-                    title: Text(
-                      "About us  ",
-                      style: TextStyle(color: Colors.black, fontSize: 16),
-                    ),
-                    trailing: IconButton(
-                      icon: Padding(
-                        padding: const EdgeInsets.only(left: 15.0),
-                        child: Icon(
-                          Icons.arrow_right,
-                          size: 25,
-                          color: Colors.red,
-                        ),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => PageAboutUS()),
-                        );
-                      },
-                    ),
-                  ),
-                  ListTile(
-                    leading: Icon(
-                      Icons.settings,
-                      color: Colors.blue,
-                    ),
-                    title: Text(
-                      "Settings",
-                      style: TextStyle(color: Colors.black, fontSize: 16),
-                    ),
-                    trailing: Icon(
-                      Icons.arrow_right,
-                      size: 25,
-                      color: Colors.red,
-                    ),
-                  ),
-                  ListTile(
-                    leading: Icon(
-                      Icons.all_out,
-                      color: Colors.red,
-                    ),
-                    title: Text(
-                      "Logout",
-                      style: TextStyle(color: Colors.black, fontSize: 16),
-                    ),
-                    trailing: Icon(
-                      Icons.arrow_right,
-                      size: 25,
-                      color: Colors.red,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Positioned(
-                top: -90,
-                child: Text(
-                  "Menu",
-                  style: TextStyle(
-                      fontSize: 40,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
-                )),
-            Positioned(
-              bottom: -60,
-              child: IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                  print("Clicked");
-                },
-                icon: Icon(
-                  Icons.cancel,
-                  size: 60,
-                  color: Colors.redAccent,
                 ),
+                ListTile(
+                  leading: Icon(
+                    Icons.verified_user,
+                    color: Colors.green,
+                  ),
+                  title: Text(
+                    "User Directory",
+                    style: TextStyle(color: Colors.black, fontSize: 16),
+                  ),
+                  trailing: Icon(
+                    Icons.keyboard_arrow_right_sharp,
+                    size: 25,
+                    color: Colors.red,
+                  ),
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.search,
+                    color: Colors.green,
+                  ),
+                  title: Text(
+                    "About us  ",
+                    style: TextStyle(color: Colors.black, fontSize: 16),
+                  ),
+                  trailing: IconButton(
+                    icon: Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child: Icon(
+                        Icons.keyboard_arrow_right_sharp,
+                        size: 25,
+                        color: Colors.red,
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PageAboutUS()),
+                      );
+                    },
+                  ),
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.settings,
+                    color: Colors.blue,
+                  ),
+                  title: Text(
+                    "Settings",
+                    style: TextStyle(color: Colors.black, fontSize: 16),
+                  ),
+                  trailing: Icon(
+                    Icons.keyboard_arrow_right_sharp,
+                    size: 25,
+                    color: Colors.red,
+                  ),
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.all_out,
+                    color: Colors.red,
+                  ),
+                  title: Text(
+                    "Logout",
+                    style: TextStyle(color: Colors.black, fontSize: 16),
+                  ),
+                  trailing: Icon(
+                    Icons.keyboard_arrow_right_sharp,
+                    size: 25,
+                    color: Colors.red,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+              top: -90,
+              child: Text(
+                "Menu",
+                style: TextStyle(
+                    fontSize: 40,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
+              )),
+          Positioned(
+            bottom: -50,
+            child: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+                print("Clicked");
+              },
+              icon: Icon(
+                Icons.cancel,
+                size: 60,
+                color: Colors.redAccent,
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

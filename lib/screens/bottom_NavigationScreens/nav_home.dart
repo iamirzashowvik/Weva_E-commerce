@@ -28,34 +28,29 @@ class _NavHomeState extends State<NavHome> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      initialIndex: 1,
+      initialIndex: 0,
       length: 17,
       child: Scaffold(
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.white,
-          flexibleSpace: Container(
-            height: 80,
-            width: 50,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 18.0),
-                    child: Text(
-                      "Weva App",
-                      style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          leading: Container(),
+
+title: Column(crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    Text('Hi Anna',style: TextStyle(fontSize:19 ,color: Colors.black),) ,Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Icon(Icons.location_pin,size: 10,color: Colors.grey,),
+        Text('New York,US',style: TextStyle(fontSize:11 ,color: Colors.black),),
+      ],
+    ) ,
+  ],),
+          leading: Padding(
+            padding: EdgeInsets.all(8.0),
+            child: CircleAvatar(backgroundImage: NetworkImage('https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixid=MXwxMjA3fDB8MHxzZWFyY2h8M3x8Z2lybHxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80',),
+              radius: 14,),
+          )
+          ,
           bottom: TabBar(
             isScrollable: true,
             indicatorSize: TabBarIndicatorSize.label,

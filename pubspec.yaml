@@ -32,8 +32,15 @@ dependencies:
   carousel_pro: 
   convex_bottom_bar: 
   font_awesome_flutter:
-  international_phone_input: 
+  international_phone_input:
   curved_navigation_bar:
+  path_drawing: ^0.4.1
+  flutter_svg: ^0.19.3
+  adobe_xd: ^1.1.0+1
+  country_code_picker: ^2.0.1
+  fluttertoast: ^7.1.8
+  dio: ^3.0.10
+  shared_preferences: ^2.0.5
 
 dev_dependencies:
   flutter_test:
